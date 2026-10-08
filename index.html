@@ -6,52 +6,120 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
-  <title>Frontend Mentor | Typing Speed Test</title>
+  <title>Typing Speed Test</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .attribution { font-size: 0.6875rem; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+
+  <link rel="stylesheet" href="styles/general.css">
+  <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
 
-  Personal best: <!-- PB --> WPM
+  <header class="header-main">
+    <div class="header-main__icon-keyboard">
+      <img src="./assets/images/logo-small.svg" alt="Keyboard Icon">
+    </div>
+    <div class="header-main__score">
+      <img src="./assets/images/icon-personal-best.svg" alt="Trophy Icon">
+       Best:
+      <span class="header-main__score-value">0 WPM</span>
+    </div>
+  </header>
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Time: <!-- Time -->
+  <main>
 
-  Difficulty:
-  Easy
-  Medium
-  Hard
+    <section class="typing-panel">
 
-  Mode:
-  Timed (60s)
-  Passage
+      <div class="stats">
+        <div class="stats__stat">
+          WPM:
+          <span class="stat__value">0</span>
+        </div>
+        <div class="stats__stat">
+          Accuracy:
+          <span class="stat__value">100%</span>
+        </div>
+        <div class="stats__stat">
+          Time:
+          <span class="stat__value">0:60</span>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="controls__control">
+          <!-- <label for="difficulty">Difficulty</label> -->
+          <select id="difficulty" name="difficulty">
+            <option value="easy" selected>Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
+        </div>
+        <div class="controls__control">
+          <!-- <label for="time-mode">Time</label> -->
+          <select id="time-mode" name="time-mode">
+            <option value="60" selected>Timed (60s)</option>
+            <option value="passage">Passage</option>
+          </select>
+          <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
+        </div>
+      </div>
 
-  <!-- Passage -->
+      <div class="typing-area">
+        <div class="typing-area__backdrop" aria-hidden="true"></div>
+        <p class="typing-area__typing-text">
+          Blurred lines of text are displayed here for the typing test. The text will become clear as you start typing.
+        </p>
+        <div class="typing-area__top-layer">
+          <button class="typing-area__start-btn btn" type="button">
+            Start Typing Text
+          </button>
+          <p class="typing-area__text">
+            Or Click the text and start typing
+          </p>
+        </div>
+      </div>
 
-  Start Typing Test
-  Or click the text and start typing
+      <button class="restart-btn btn" type="button">
+        Restart Test
+        <img src="./assets/images/icon-restart.svg" alt="restart arrow">
+      </button>
+        
+    </section>
+
+    <section>
+
+    </section>
+
+    <section>
+
+    </section>
+
+  </main>
+
+
+  <!-- Start Typing Test
+  Or click the text and start typing -->
 
   <!-- Test Complete Start -->
 
-  Test Complete!
-  Solid run. Keep pushing to beat your high score.
+  <!-- Test Complete!
+  Solid run. Keep pushing to beat your high score. -->
 
-  WPM: <!-- WPM -->
-  Accuracy: <!-- Accuracy -->
-  Characters: <!-- Correct/Incorrect -->
+  <!-- WPM:
+  Accuracy: 
+  Characters:
 
-  Go Again
+  Go Again -->
   
   <!-- Test Complete End -->
 
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Mehran</a>.
   </footer>
 </body>
 </html>
