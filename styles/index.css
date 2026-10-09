@@ -109,7 +109,6 @@ main {
 }
 
 .typing-area {
-  width: 100%;
   position: relative;
   flex: 1;
   overflow: hidden;
@@ -144,7 +143,9 @@ main {
   -webkit-backdrop-filter: blur(6px);
   background: rgba(255, 255, 255, 0.04);
   z-index: 1;
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 .typing-area__top-layer {
@@ -155,14 +156,6 @@ main {
   align-items: center;
   height: 100%;
   width: 100%;
-}
-
-.typing-area__typing-text {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 0;
-  padding: 1rem;
 }
 
 .btn {
@@ -194,4 +187,74 @@ main {
   z-index: 2;
   position: relative;
   margin-block-start: 0.8rem;
+}
+
+
+.typing-area__test-text,
+.typing-area__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 1rem;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.typing-area__test-text {
+  z-index: 0;
+  overflow: hidden;
+  color: var(--color-Neutral-0);
+  pointer-events: none;
+}
+
+.typing-area__input {
+  z-index: 1;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-Neutral-0);
+  caret-color: transparent;
+  Opacity: 0;
+}
+
+.correct {
+  color: var(--Green-500);
+}
+
+.incorrect {
+  color: var(--Red-500);
+  text-decoration: underline;
+}
+
+
+.red-font {
+  color: var(--Red-500);
+}
+
+.green-font {
+  color: var(--Green-500);
+}
+
+.yellow-font {
+  color: var(--Yellow-400);
+}
+
+.current-char {
+  text-decoration: underline;
+  background-color: var(--color-Neutral-400);
+  text-decoration-thickness: 2px;
 }
