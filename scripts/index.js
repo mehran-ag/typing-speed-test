@@ -6,10 +6,42 @@ async function loadData() {
 
 }
 
-let personalScore = localStorage.getItem('personalScore') || 0;
+let personalScore = 0;
+
+function updateTimeInterval(seconds) {
+  if (timeModeElement.value === '60') {
+
+    timerDisplayElement.textContent = `0:${(60 - seconds).toString().padStart(2, '0')}`;
+
+    if (seconds >= 60) {
+
+      clearInterval(timer);
+      inputTextElement.disabled = true;
+      personalScoreElement.textContent = personalScore;
+      localStorage.setItem('personalScore', personalScore);
+
+      if (personalScore > Number(bestScoreElement.textContent)) {
+        bestScoreElement.textContent = `${personalScore}`;
+        localStorage.setItem('bestScore', personalScore);
+      }
+    };
+
+  } else if (timeModeElement.value === 'passage') {
+
+    timerDisplayElement.textContent = `0:00`;
+
+    if (seconds < 60) {
+      timerDisplayElement.textContent = `0:${seconds}`;
+    } else {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      timerDisplayElement.textContent = `${minutes}:${remainingSeconds}`;
+    }
+  };
+};
 
 const personalScoreElement = document.querySelector('.js-personal-score');
-personalScoreElement.textContent = personalScore;
+// personalScoreElement.textContent = personalScore;
 
 const startButtonElement = document.querySelector('.js-start-typing-btn');
 
@@ -39,7 +71,10 @@ startButtonElement.addEventListener('click', async () => {
   clearInterval(timer);
 
   inputTextElement.disabled = false;
+
   inputTextElement.value = '';
+
+  /* Choosing test text from the existing sample */
   const tests = await loadData();
   const difficulty = document.querySelector('.js-difficulty-select').value;
   const randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -54,7 +89,27 @@ startButtonElement.addEventListener('click', async () => {
     console.error(`Difficulty level ${difficulty} not found.`);
   }
 
+  /* Adding spans to the selected test text */
   testTextElement.innerHTML = testTextContent.split('').map(char => `<span>${char}</span>`).join('');
+
+  const spannedChars = testTextElement.querySelectorAll('span');
+
+  spannedChars.forEach((char) => {
+    char.classList.add('dim');
+  })
+
+  let seconds = 0;
+
+  updateTimeInterval(seconds);
+
+  timer = setInterval(() => {
+
+    seconds++;
+    updateTimeInterval(seconds);
+
+  }, 1000);
+
+  inputTextElement.focus();
 
   document.querySelector('.js-typing-backdrop').style.visibility = 'hidden';
 
@@ -63,50 +118,6 @@ startButtonElement.addEventListener('click', async () => {
   document.querySelector('.js-typing-text-instruction').style.display = 'none';
 
   timerDisplayElement.classList.add('yellow-font');
-
-  let seconds = 0;
-
-  timer = setInterval(() => {
-    seconds++;
-
-    const spannedChars = testTextElement.querySelectorAll('span');
-
-    const allCharactersChecked = [...spannedChars].every(char =>
-      char.classList.contains('correct') ||
-      char.classList.contains('incorrect')
-    );
-
-    if (timeModeElement.value === '60') {
-
-      timerDisplayElement.textContent = `0:${(60 - seconds).toString().padStart(2, '0')}`;
-
-      if ((allCharactersChecked) || (seconds >= 60)) {
-        clearInterval(timer);
-        inputTextElement.disabled = true;
-        personalScoreElement.textContent = personalScore;
-        localStorage.setItem('personalScore', personalScore);
-        console.log('Test completed. Personal Score:', personalScore);
-        if (personalScore > Number(bestScoreElement.textContent)) {
-          bestScoreElement.textContent = `${personalScore}`;
-          localStorage.setItem('bestScore', personalScore);
-        }
-      };
-
-    } else if (timeModeElement.value === 'passage') {
-
-      timerDisplayElement.textContent = `0:00`;
-      if (seconds < 60) {
-        timerDisplayElement.textContent = `0:${seconds}`;
-      } else {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        timerDisplayElement.textContent = `${minutes}:${remainingSeconds}`;
-      }
-    }
-  }, 1000);
-
-  inputTextElement.focus();
-
 
 });
 
@@ -153,23 +164,15 @@ inputTextElement.addEventListener('input', () => {
     };
 
     if (typedChar === spannedChar.textContent) {
+      spannedChar.classList.remove('dim');
       spannedChar.classList.add('correct');
       correct++;
     } else {
+      spannedChar.classList.remove('dim');
       spannedChar.classList.add('incorrect');
       incorrect++;
     }
   });
-
-  const allCharactersChecked = [...spannedChars].every(char =>
-    char.classList.contains('correct') ||
-    char.classList.contains('incorrect')
-  );
-
-  if (allCharactersChecked) {
-    clearInterval(timer);
-    inputTextElement.disabled = true;
-  }
 
   const total = correct + incorrect;
 
@@ -188,7 +191,20 @@ inputTextElement.addEventListener('input', () => {
 
   personalScore = Math.round(accuracy);
 
-  console.log('Personal Score:', personalScore);
+  const allCharactersChecked = [...spannedChars].every(char =>
+    char.classList.contains('correct') ||
+    char.classList.contains('incorrect')
+  );
+
+  if (allCharactersChecked) {
+    clearInterval(timer);
+    inputTextElement.disabled = true;
+    personalScoreElement.textContent = personalScore;
+    if (personalScore > Number(bestScoreElement.textContent)) {
+      bestScoreElement.textContent = `${personalScore}`;
+      localStorage.setItem('bestScore', personalScore);
+    }
+  }
 
 });
 
@@ -204,6 +220,8 @@ restartButton.addEventListener('click', () => {
   document.querySelector('.js-typing-text-instruction').style.display = 'block';
 
   clearInterval(timer);
+
+  personalScoreElement.textContent = '0';
 
   timerDisplayElement.classList.remove('yellow-font');
   if (timeModeElement.value === '60') {

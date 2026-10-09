@@ -231,6 +231,10 @@ main {
   Opacity: 0;
 }
 
+.dim {
+  opacity: 0.5;
+}
+
 .correct {
   color: var(--Green-500);
 }
