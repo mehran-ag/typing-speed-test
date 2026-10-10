@@ -8,6 +8,16 @@ async function loadData() {
 
 let personalScore = 0;
 
+let accuracy = 0;
+
+let correct = 0;
+
+let incorrect = 0;
+
+const typingPanelElement = document.querySelector('.js-typing-panel');
+
+const resultsPanelElement = document.querySelector('.js-results-panel');
+
 function updateTimeInterval(seconds) {
   if (timeModeElement.value === '60') {
 
@@ -23,7 +33,7 @@ function updateTimeInterval(seconds) {
       if (personalScore > Number(bestScoreElement.textContent)) {
         bestScoreElement.textContent = `${personalScore}`;
         localStorage.setItem('bestScore', personalScore);
-      }
+      };
 
       document.querySelector('.js-personal-scores-score').textContent = `${personalScore}`;
 
@@ -51,10 +61,6 @@ function updateTimeInterval(seconds) {
     }
   };
 };
-
-const typingPanelElement = document.querySelector('.js-typing-panel');
-
-const resultsPanelElement = document.querySelector('.js-results-panel');
 
 const personalScoreElement = document.querySelector('.js-personal-score');
 // personalScoreElement.textContent = personalScore;
@@ -85,6 +91,12 @@ let typedText = '';
 resultsPanelElement.style.display = 'none';
 
 startButtonElement.addEventListener('click', async () => {
+
+  accuracy = 0;
+
+  correct = 0;
+
+  incorrect = 0;
 
   clearInterval(timer);
 
@@ -170,8 +182,8 @@ inputTextElement.addEventListener('input', () => {
 
   typedText = inputTextElement.value;
 
-  let correct = 0;
-  let incorrect = 0;
+  correct = 0;
+  incorrect = 0;
 
   spannedChars.forEach((spannedChar, index) => {
 
@@ -194,7 +206,7 @@ inputTextElement.addEventListener('input', () => {
 
   const total = correct + incorrect;
 
-  const accuracy = total === 0
+  accuracy = total === 0
     ? 100
     : (correct / total) * 100;
 
