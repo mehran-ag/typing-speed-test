@@ -22,6 +22,8 @@ html * {
   --color-Blue-600: hsl(214, 100%, 55%);
   --color-Blue-400: hsl(210, 100%, 65%);
 
+  --color-black: rgb(0, 0, 0);
+
   --Red-500: hsl(354, 63%, 57%);
 
   --Green-500: hsl(140, 63%, 57%);
@@ -57,6 +59,6 @@ html * {
 .sora-700 {
   font-family: "Sora", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }

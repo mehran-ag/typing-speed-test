@@ -24,6 +24,18 @@ function updateTimeInterval(seconds) {
         bestScoreElement.textContent = `${personalScore}`;
         localStorage.setItem('bestScore', personalScore);
       }
+
+      document.querySelector('.js-personal-scores-score').textContent = `${personalScore}`;
+
+      document.querySelector('.js-personal-scores-accuracy').textContent = `${Math.round(accuracy)}%`;
+
+      document.querySelector('.js-personal-scores-score-correct').textContent = `${correct}`;
+
+      document.querySelector('.js-personal-scores-score-incorrect').textContent = `${incorrect}`;
+
+      typingPanelElement.style.display = 'none';
+
+      resultsPanelElement.style.display = 'block';
     };
 
   } else if (timeModeElement.value === 'passage') {
@@ -39,6 +51,10 @@ function updateTimeInterval(seconds) {
     }
   };
 };
+
+const typingPanelElement = document.querySelector('.js-typing-panel');
+
+const resultsPanelElement = document.querySelector('.js-results-panel');
 
 const personalScoreElement = document.querySelector('.js-personal-score');
 // personalScoreElement.textContent = personalScore;
@@ -65,6 +81,8 @@ let testTextContent = '';
 let timer;
 
 let typedText = '';
+
+resultsPanelElement.style.display = 'none';
 
 startButtonElement.addEventListener('click', async () => {
 
@@ -204,6 +222,19 @@ inputTextElement.addEventListener('input', () => {
       bestScoreElement.textContent = `${personalScore}`;
       localStorage.setItem('bestScore', personalScore);
     }
+
+    document.querySelector('.js-personal-scores-score').textContent = `${personalScore}`;
+
+    document.querySelector('.js-personal-scores-accuracy').textContent = `${Math.round(accuracy)}%`;
+
+    document.querySelector('.js-personal-scores-score-correct').textContent = `${correct}`;
+
+    document.querySelector('.js-personal-scores-score-incorrect').textContent = `${incorrect}`;
+
+    typingPanelElement.style.display = 'none';
+
+    resultsPanelElement.style.display = 'block';
+
   }
 
 });
@@ -233,4 +264,3 @@ restartButton.addEventListener('click', () => {
   accuracyElement.classList.remove('red-font');
 
 });
-

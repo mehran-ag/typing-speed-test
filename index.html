@@ -32,7 +32,7 @@
 
   <main>
 
-    <section class="typing-panel">
+    <section class="typing-panel js-typing-panel">
 
       <div class="stats">
         <div class="stats__stat">
@@ -91,8 +91,45 @@
         
     </section>
 
-    <section>
+    <section class="results js-results-panel">
+      <div class="results__header">
+        <img src="./assets/images/icon-completed.svg" class="tick-mark-svg">
+        <h1>
+          Baseline Established!
+        </h1>
+        <p>
+          You've set the bar. Now the real challenge begins-time to beat it.
+        </p>
+        <span class="star-2-wrapper">
+          <img src="assets/images/pattern-star-2.svg" class="star-2">
+        </span>
+      </div>
 
+      <div class="personal-scores">
+        <div class="personal-scores__score">
+          <span class="personal-scores__score-label">WPM:</span>
+          <span class="personal_scores__personal-scor weight-700  js-personal-scores-score">0</span>
+        </div>
+        <div class="personal-scores__score">
+          <span class="personal-scores__score-label">Accuracy:</span>
+          <span class="personal-scores__score-accuracy weight-700 js-personal-scores-accuracy">0%</span>
+        </div>
+        <div class="personal-scores__score">
+          <p class="personal-scores__score-label">Characters</p>
+          <p class="weight-700">
+            <span class="personal-scores__score-correct green-font js-personal-scores-score-correct">0</span>
+            <span class="dim weight-700">/</span>
+            <span class="personal-scores__score-incorrect red-font js-personal-scores-score-incorrect">0</span>
+          </p>
+        </div>
+
+        <button class="beat-score btn">
+          Beat This Score
+          <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
+        </button>
+        <img src="assets/images/pattern-star-1.svg" class="star-1">
+      </div>
+      
     </section>
 
     <section>
