@@ -27,6 +27,7 @@
       <img src="./assets/images/icon-personal-best.svg" alt="Trophy Icon">
        Best:
       <span class="header-main__score-value js-best-score">0</span><span class="header-main__score-value"> WPM</span>
+      <button class="reset-best-score js-reset-score">Reset Best Score</button>
     </div>
   </header>
 
@@ -123,7 +124,7 @@
           </p>
         </div>
 
-        <button class="beat-score btn">
+        <button class="beat-score btn js-beat-score">
           Beat This Score
           <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
         </button>
@@ -131,9 +132,42 @@
       </div>
       
     </section>
+      
+    <section class="achievement js-achievement-panel">
+      <div class="achievement__header">
+        <img src="./assets/images/icon-new-pb.svg" class="new-personal-svg">
+        <h1>
+          High Score Smashed!
+        </h1>
+        <p>
+          You're getting faster. That was incredible typing.
+        </p>
+      </div>
 
-    <section>
+      <div class="personal-scores">
+        <div class="personal-scores__score">
+          <span class="personal-scores__score-label">WPM:</span>
+          <span class="personal_scores__personal-scor weight-700  js-achievement-score">0</span>
+        </div>
+        <div class="personal-scores__score">
+          <span class="personal-scores__score-label">Accuracy:</span>
+          <span class="personal-scores__score-accuracy weight-700 js-achievement-accuracy">0%</span>
+        </div>
+        <div class="personal-scores__score">
+          <p class="personal-scores__score-label">Characters</p>
+          <p class="weight-700">
+            <span class="personal-scores__score-correct green-font js-achievement-correct">0</span>
+            <span class="dim weight-700">/</span>
+            <span class="personal-scores__score-incorrect red-font js-achievement-incorrect">0</span>
+          </p>
+        </div>
 
+        <button class="go-again-btn btn js-go-again">
+         Go Again
+          <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
+        </button>
+        <img src="assets/images/pattern-confetti.svg" class="confetti">
+      </div>
     </section>
 
   </main>

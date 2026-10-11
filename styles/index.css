@@ -19,6 +19,25 @@ body {
   align-items: center;
   gap: 0.5rem;
   color: var(--color-Neutral-05);
+  position: relative;
+}
+
+.reset-best-score {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background-color: var(--color-Neutral-0);
+  color: var(--color-Neutral-900);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.reset-best-score:hover {
+  cursor: pointer;
+}
+
+.header-main__score:hover .reset-best-score {
+  display: block;
 }
 
 .header-main__score-value {
@@ -117,7 +136,8 @@ main {
   border-bottom: 1px solid var(--color-Neutral-Border);
 }
 
-.restart-btn {
+.restart-btn,
+.go-again-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -130,7 +150,8 @@ main {
   align-self: center;
 }
 
-.restart-btn img {
+.restart-btn img,
+.go-again-btn img {
   margin-left: 0.5rem;
   height: 1rem;
   width: auto;
@@ -263,7 +284,8 @@ main {
   text-decoration-thickness: 2px;
 }
 
-.results {
+.results,
+.achievement {
   height: 100%;
   width: 100%;
   display: flex;
@@ -273,13 +295,16 @@ main {
   padding: 0.5rem;
 }
 
-.results__header {
+.results__header,
+.achievement__header {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 1rem;
   margin: 0.5rem;
   position: relative;
+  line-height: 2.5em;
+  text-align: center;
 }
 
 .results__header h1 {
@@ -336,7 +361,8 @@ main {
   margin-inline-start: 0.5em;
 }
 
-.tick-mark-svg {
+.tick-mark-svg,
+.new-personal-svg {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
@@ -392,4 +418,9 @@ main {
   right: clamp(0.5rem, 10%, 2rem);
   width: 2.5rem;
   height: 2.5rem;
+}
+
+.confetti {
+  width: 100%;
+
 }
