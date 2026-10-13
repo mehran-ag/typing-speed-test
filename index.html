@@ -16,16 +16,19 @@
 
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/media.css">
 </head>
 <body>
 
   <header class="header-main">
     <div class="header-main__icon-keyboard">
-      <img src="./assets/images/logo-small.svg" alt="Keyboard Icon">
+      <img src="./assets/images/logo-small.svg" alt="Keyboard Icon" class="logo-small">
+      <img src="./assets/images/logo-large.svg" alt="Keyboard Icon" class="logo-large">
     </div>
     <div class="header-main__score">
       <img src="./assets/images/icon-personal-best.svg" alt="Trophy Icon">
-       Best:
+       <p class="best-txt">Best:</p>
+       <p class="personal-best-txt">Personal best:</p>
       <span class="header-main__score-value js-best-score">0</span><span class="header-main__score-value"> WPM</span>
       <button class="reset-best-score js-reset-score">Reset Best Score</button>
     </div>
@@ -34,47 +37,64 @@
   <main>
 
     <section class="typing-panel js-typing-panel">
+      <div class="stats-controls">
+        <div class="stats">
+          <div class="stats__stat">
+            WPM:
+            <span class="stat__value js-personal-score">0</span>
+          </div>
+          <div class="stats__stat">
+            Accuracy:
+            <span class="stat__value js-accuracy">100%</span>
+          </div>
+          <div class="stats__stat">
+            Time:
+            <span class="stat__value js-timer">1:00</span>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="difficulty-buttons">
+            <p>
+              Difficulty:
+            </p>
+            <button type="button" class="difficulty-btn active">Easy</button>
+            <button type="button" class="difficulty-btn">Medium</button>
+            <button type="button" class="difficulty-btn">Hard</button>
+          </div>
 
-      <div class="stats">
-        <div class="stats__stat">
-          WPM:
-          <span class="stat__value js-personal-score">0</span>
-        </div>
-        <div class="stats__stat">
-          Accuracy:
-          <span class="stat__value js-accuracy">100%</span>
-        </div>
-        <div class="stats__stat">
-          Time:
-          <span class="stat__value js-timer">0:60</span>
-        </div>
-      </div>
-      <div class="controls">
-        <div class="controls__control">
-          <!-- <label for="difficulty">Difficulty</label> -->
-          <select id="difficulty" name="difficulty" class="js-difficulty-select">
-            <option value="easy" selected>Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-          <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
-        </div>
-        <div class="controls__control">
-          <!-- <label for="time-mode">Time</label> -->
-          <select id="time-mode" name="time-mode" class="js-time-mode-select">
-            <option value="60" selected>Timed (60s)</option>
-            <option value="passage">Passage</option>
-          </select>
-          <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
+          <div class="mode-buttons">
+            <p>
+              Mode:
+            </p>
+            <button type="button" class="mode-btn active">Timed (60s)</button>
+            <button type="button" class="mode-btn">passage</button>
+          </div>
+
+          <div class="controls__control">
+            <!-- <label for="difficulty">Difficulty</label> -->
+            <select id="difficulty" name="difficulty" class="js-difficulty-select">
+              <option value="easy" selected>Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
+          </div>
+          <div class="controls__control">
+            <!-- <label for="time-mode">Time</label> -->
+            <select id="time-mode" name="time-mode" class="js-time-mode-select">
+              <option value="60" selected>Timed (60s)</option>
+              <option value="passage">Passage</option>
+            </select>
+            <img src="./assets/images/icon-down-arrow.svg" alt="Arrow Down Icon">
+          </div>
         </div>
       </div>
 
       <div class="typing-area">
         <div class="typing-area__backdrop js-typing-backdrop" aria-hidden="true"></div>
-        <p class="typing-area__test-text js-test-text">
-          Blurred lines of text are displayed here for the typing test. The text will become clear as you start typing.
+        <p class="typing-area__test-text js-test-text">Blurred lines of text are displayed here for the typing test. The text will become clear as you start typing.
         </p>
-        <textarea class="typing-area__input js-typing-input" placeholder="Start typing here..." aria-label="Typing Input Area"></textarea>
+        <textarea class="typing-area__input js-typing-input" aria-label="Typing Input Area"></textarea>
         <div class="typing-area__top-layer">
           <button class="typing-area__start-btn btn js-start-typing-btn" type="button">
             Start Typing Text
@@ -85,7 +105,7 @@
         </div>
       </div>
 
-      <button class="restart-btn btn js-restart-btn" type="button">
+      <button class="restart-btn js-restart-btn" type="button">
         Restart Test
         <img src="./assets/images/icon-restart.svg" alt="restart arrow">
       </button>
@@ -123,10 +143,12 @@
             <span class="personal-scores__score-incorrect red-font js-personal-scores-score-incorrect">0</span>
           </p>
         </div>
+      </div>
 
+      <div class="button-container">
         <button class="beat-score btn js-go-again-results">
           Go Again
-          <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
+          <img src="assets/images/icon-restart.svg" class="icon-beat-restart">
           <img src="assets/images/pattern-star-1.svg" class="star-1">
         </button>
       </div>
@@ -165,10 +187,12 @@
             <span class="personal-scores__score-incorrect red-font js-first-personal-scores-score-incorrect">0</span>
           </p>
         </div>
+      </div>
 
+      <div class="button-container">
         <button class="beat-score btn js-beat-score">
           Beat This Score
-          <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
+          <img src="assets/images/icon-restart.svg" class="icon-beat-restart">
           <img src="assets/images/pattern-star-1.svg" class="star-1">
         </button>
       </div>
@@ -204,12 +228,16 @@
             <span class="personal-scores__score-incorrect red-font js-achievement-incorrect">0</span>
           </p>
         </div>
+      </div>
 
+      <div class="button-container">
         <button class="go-again-btn btn js-go-again">
          Go Again
           <img src="assets/images/icon-restart.svg" class="icon--beat-restart">
         </button>
-        <img src="assets/images/pattern-confetti.svg" class="confetti">
+        <div class="confetti-container">
+          <img src="assets/images/pattern-confetti.svg" class="confetti">
+        </div>
       </div>
     </section>
 

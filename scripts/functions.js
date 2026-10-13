@@ -109,6 +109,7 @@ function timeDisplay(seconds) {
     time = `0:${seconds.toString().padStart(2, '0')}`;
 
   } else {
+
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     time = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
@@ -130,11 +131,11 @@ function updateTimeInterval(seconds, timeMode, results, timer) {
 
     if (timeMode === '60') {
 
-      time = timeDisplay('60');
+      time = timeDisplay(60);
 
     } else if (timeMode === 'passage') {
 
-      time = timeDisplay('0');
+      time = timeDisplay(0);
 
     }
   } else {
@@ -170,8 +171,21 @@ async function selectTestText() {
 
   /* Choosing test text from the existing sample */
   const tests = await loadData();
-  const difficulty = document.querySelector('.js-difficulty-select').value;
+
+  let difficulty = '';
+
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    // JavaScript for viewport widths of 768px or more
+    difficulty = document.querySelector('.difficulty-btn.active')
+      .textContent
+      .trim()
+      .toLowerCase();
+  } else {
+    difficulty = document.querySelector('.js-difficulty-select').value;
+  }
+
   const randomNumber = Math.floor(Math.random() * 10) + 1;
+
   if (!tests[difficulty]) {
     console.error(`Difficulty level ${difficulty} not found.`);
     return '';
@@ -218,7 +232,21 @@ export async function startTypingChallenge(results, timer) {
     char.classList.add('dim');
   });
 
-  const timeMode = document.querySelector('.js-time-mode-select').value;
+  let timeMode = '';
+
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    // JavaScript for viewport widths of 768px or more
+    timeMode = document.querySelector('.mode-btn.active')
+      .textContent
+      .trim()
+      .toLowerCase();
+
+    if (timeMode === 'timed (60s)') {
+      timeMode = '60';
+    }
+  } else {
+    timeMode = document.querySelector('.js-time-mode-select').value;
+  }
 
   let seconds = 0;
 
@@ -239,6 +267,8 @@ export async function startTypingChallenge(results, timer) {
   document.querySelector('.js-start-typing-btn').style.display = 'none';
 
   document.querySelector('.js-typing-text-instruction').style.display = 'none';
+
+  document.querySelector('.js-restart-btn').style.display = 'flex';
 
   timerDisplayElement.classList.add('yellow-font');
 
@@ -388,3 +418,18 @@ export function restartTest(timer) {
   accuracyElement.classList.remove('red-font');
 
 };
+
+export function buttonSelector(mode) {
+  const modeButtons = document.querySelectorAll(`.${mode}-btn`);
+
+  modeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      modeButtons.forEach((btn) => {
+        btn.classList.remove('active');
+      });
+
+      button.classList.add('active');
+
+    });
+  });
+}

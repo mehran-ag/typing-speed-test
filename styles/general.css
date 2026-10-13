@@ -16,11 +16,13 @@ html * {
   --color-Neutral-100: hsl(240, 2%, 70%);
   --color-Neutral-0: hsl(0, 0%, 100%);
   --color-Neutral-05: hsla(0, 0%, 100%, 0.5);
+  --color-Neutral-0-dimmed: hsl(0, 0%, 100%, 0.4);
 
   --color-Neutral-Border: hsla(0, 0%, 100%, 0.25);
 
   --color-Blue-600: hsl(214, 100%, 55%);
   --color-Blue-400: hsl(210, 100%, 65%);
+  --color-Blue-200: hsl(210, 100%, 85%);
 
   --color-black: rgb(0, 0, 0);
 

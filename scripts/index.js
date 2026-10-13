@@ -1,4 +1,4 @@
-import { startTypingChallenge, updateText, restartTest } from './functions.js';
+import { startTypingChallenge, updateText, restartTest, buttonSelector } from './functions.js';
 
 export const results = {
   personalScore: 0,
@@ -10,6 +10,7 @@ export const results = {
 };
 
 /* Hide results panel at first */
+document.querySelector('.js-typing-panel').style.display = 'flex';
 document.querySelector('.js-first-result-panel').style.display = 'none';
 document.querySelector('.js-results-panel').style.display = 'none';
 document.querySelector('.js-achievement-panel').style.display = 'none';
@@ -78,3 +79,7 @@ document.querySelector('.js-reset-score').addEventListener('click', () => {
   localStorage.setItem('bestScore', 0);
   localStorage.setItem('testCounter', 0);
 })
+
+buttonSelector('difficulty');
+
+buttonSelector('mode');
