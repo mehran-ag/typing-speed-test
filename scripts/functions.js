@@ -1,5 +1,5 @@
 async function loadData() {
-  const response = await fetch("../data/data.json");
+  const response = await fetch("./data/data.json");
   const tests = await response.json();
 
   return tests;
@@ -404,6 +404,8 @@ export function restartTest(timer) {
   document.querySelector('.js-start-typing-btn').style.display = 'block';
 
   document.querySelector('.js-typing-text-instruction').style.display = 'block';
+
+  document.querySelector('.js-restart-btn').style.display = 'none';
 
   clearInterval(timer);
 
