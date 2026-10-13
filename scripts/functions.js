@@ -6,20 +6,19 @@ async function loadData() {
 
 }
 
+function testTakeCheck(testCounter) {
+  if (testCounter > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-function testTimeout(results) {
-
-  const inputTextElement = document.querySelector('.js-typing-input');
-
-  const personalScoreElement = document.querySelector('.js-personal-score');
+function resultsDisplay(results) {
 
   const bestScoreElement = document.querySelector('.js-best-score');
 
-  inputTextElement.disabled = true;
-
-  personalScoreElement.textContent = results.personalScore;
-
-  if (results.personalScore > results.bestScore) {
+  if (!testTakeCheck(results.testCounter)) {
 
     results.bestScore = results.personalScore;
 
@@ -27,33 +26,75 @@ function testTimeout(results) {
 
     localStorage.setItem('bestScore', results.personalScore);
 
-    document.querySelector('.js-achievement-score').textContent = `${results.personalScore}`;
+    document.querySelector('.js-first-personal-scores-score').textContent = `${results.personalScore}`;
 
-    document.querySelector('.js-achievement-accuracy').textContent = `${results.accuracy}%`;
+    document.querySelector('.js-first-personal-scores-accuracy').textContent = `${results.accuracy}%`;
 
-    document.querySelector('.js-achievement-correct').textContent = `${results.correct}`;
+    document.querySelector('.js-first-personal-scores-score-correct').textContent = `${results.correct}`;
 
-    document.querySelector('.js-achievement-incorrect').textContent = `${results.incorrect}`;
+    document.querySelector('.js-first-personal-scores-score-incorrect').textContent = `${results.incorrect}`;
 
     document.querySelector('.js-typing-panel').style.display = 'none';
 
-    document.querySelector('.js-achievement-panel').style.display = 'flex';
+    document.querySelector('.js-first-result-panel').style.display = 'flex';
 
   } else {
 
-    document.querySelector('.js-personal-scores-score').textContent = `${results.personalScore}`;
+    if (results.personalScore > results.bestScore) {
 
-    document.querySelector('.js-personal-scores-accuracy').textContent = `${results.accuracy}%`;
+      results.bestScore = results.personalScore;
 
-    document.querySelector('.js-personal-scores-score-correct').textContent = `${results.correct}`;
+      bestScoreElement.textContent = `${results.personalScore}`;
 
-    document.querySelector('.js-personal-scores-score-incorrect').textContent = `${results.incorrect}`;
+      localStorage.setItem('bestScore', results.personalScore);
 
-    document.querySelector('.js-typing-panel').style.display = 'none';
+      document.querySelector('.js-achievement-score').textContent = `${results.personalScore}`;
 
-    document.querySelector('.js-results-panel').style.display = 'flex';
+      document.querySelector('.js-achievement-accuracy').textContent = `${results.accuracy}%`;
+
+      document.querySelector('.js-achievement-correct').textContent = `${results.correct}`;
+
+      document.querySelector('.js-achievement-incorrect').textContent = `${results.incorrect}`;
+
+      document.querySelector('.js-typing-panel').style.display = 'none';
+
+      document.querySelector('.js-achievement-panel').style.display = 'flex';
+
+    } else {
+
+      document.querySelector('.js-personal-scores-score').textContent = `${results.personalScore}`;
+
+      document.querySelector('.js-personal-scores-accuracy').textContent = `${results.accuracy}%`;
+
+      document.querySelector('.js-personal-scores-score-correct').textContent = `${results.correct}`;
+
+      document.querySelector('.js-personal-scores-score-incorrect').textContent = `${results.incorrect}`;
+
+      document.querySelector('.js-typing-panel').style.display = 'none';
+
+      document.querySelector('.js-results-panel').style.display = 'flex';
+
+    }
 
   }
+};
+
+
+function testTimeout(results) {
+
+  const inputTextElement = document.querySelector('.js-typing-input');
+
+  const personalScoreElement = document.querySelector('.js-personal-score');
+
+  inputTextElement.disabled = true;
+
+  personalScoreElement.textContent = results.personalScore;
+
+  resultsDisplay(results);
+
+  results.testCounter++;
+
+  localStorage.setItem('testCounter', results.testCounter);
 
 };
 
@@ -225,41 +266,11 @@ function testCompletionCheck(spannedChars, results, timer) {
 
     document.querySelector('.js-personal-score').textContent = results.personalScore;
 
-    if (results.personalScore > results.bestScore) {
+    resultsDisplay(results);
 
-      results.bestScore = results.personalScore;
+    results.testCounter++;
 
-      bestScoreElement.textContent = `${results.bestScore}`;
-
-      localStorage.setItem('bestScore', results.bestScore);
-
-      document.querySelector('.js-achievement-score').textContent = `${results.personalScore}`;
-
-      document.querySelector('.js-achievement-accuracy').textContent = `${results.accuracy}%`;
-
-      document.querySelector('.js-achievement-correct').textContent = `${results.correct}`;
-
-      document.querySelector('.js-achievement-incorrect').textContent = `${results.incorrect}`;
-
-      document.querySelector('.js-typing-panel').style.display = 'none';
-
-      document.querySelector('.js-achievement-panel').style.display = 'flex';
-
-    } else {
-
-      document.querySelector('.js-personal-scores-score').textContent = `${results.personalScore}`;
-
-      document.querySelector('.js-personal-scores-accuracy').textContent = `${results.accuracy}%`;
-
-      document.querySelector('.js-personal-scores-score-correct').textContent = `${results.correct}`;
-
-      document.querySelector('.js-personal-scores-score-incorrect').textContent = `${results.incorrect}`;
-
-      document.querySelector('.js-typing-panel').style.display = 'none';
-
-      document.querySelector('.js-results-panel').style.display = 'flex';
-
-    }
+    localStorage.setItem('testCounter', results.testCounter);
 
   }
 

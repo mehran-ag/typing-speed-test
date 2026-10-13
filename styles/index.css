@@ -285,6 +285,7 @@ main {
 }
 
 .results,
+.first-result,
 .achievement {
   height: 100%;
   width: 100%;
@@ -346,6 +347,7 @@ main {
 }
 
 .beat-score {
+  position: relative;
   background-color: var(--color-Neutral-0);
   width: clamp(7rem, 60%, 20rem);
   align-self: center;
@@ -399,8 +401,7 @@ main {
   background: rgb(255 0 0 / 35%);
   border-radius: 50%;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 25%;
   z-index: 0;
 }
 
@@ -414,8 +415,8 @@ main {
 
 .star-1 {
   position: absolute;
-  bottom: clamp(-2rem, -10%, -0.2rem);
-  right: clamp(0.5rem, 10%, 2rem);
+  bottom: clamp(-3rem, -200%, -2rem);
+  right: clamp(-3rem, -100%, -2rem);
   width: 2.5rem;
   height: 2.5rem;
 }

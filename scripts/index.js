@@ -5,10 +5,12 @@ export const results = {
   accuracy: 0,
   correct: 0,
   incorrect: 0,
-  bestScore: Number(localStorage.getItem('bestScore')) || 0
+  bestScore: Number(localStorage.getItem('bestScore')) || 0,
+  testCounter: Number(localStorage.getItem('testCounter')) || 0
 };
 
 /* Hide results panel at first */
+document.querySelector('.js-first-result-panel').style.display = 'none';
 document.querySelector('.js-results-panel').style.display = 'none';
 document.querySelector('.js-achievement-panel').style.display = 'none';
 
@@ -51,7 +53,7 @@ inputTextElement.addEventListener('keydown', (event) => {
 
 
 document.querySelector('.js-beat-score').addEventListener('click', () => {
-  document.querySelector('.js-results-panel').style.display = 'none';
+  document.querySelector('.js-first-result-panel').style.display = 'none';
   document.querySelector('.js-typing-panel').style.display = 'flex';
   restartTest(timer);
 });
@@ -62,9 +64,17 @@ document.querySelector('.js-go-again').addEventListener('click', () => {
   restartTest(timer);
 });
 
+document.querySelector('.js-go-again-results').addEventListener('click', () => {
+  document.querySelector('.js-results-panel').style.display = 'none';
+  document.querySelector('.js-typing-panel').style.display = 'flex';
+  restartTest(timer);
+});
+
 
 document.querySelector('.js-reset-score').addEventListener('click', () => {
   results.bestScore = 0;
+  results.testCounter = 0;
   document.querySelector('.js-best-score').textContent = 0;
   localStorage.setItem('bestScore', 0);
+  localStorage.setItem('testCounter', 0);
 })
