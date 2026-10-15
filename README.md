@@ -4,7 +4,7 @@
 
 ## Welcome! 👋
 
-Thanks for checking out this page. You are now able to evaluate your typing skills. This time, you have the right tool to showcase your skills. Give it a go.
+Thanks for checking out this page. You are now able to evaluate your typing skills. This time, you have the right tool to showcase your skills. Give it a go at (https://mehran-ag.github.io/typing-speed-test/)
 
 **Prepare yourself for a fun challenge.**
 
@@ -25,7 +25,6 @@ You are able to:
 
 - See real-time WPM, accuracy, and time stats while typing
 - See visual feedback showing correct characters (green), errors (red/underlined), and cursor position
-- Correct mistakes with backspace (original errors still count against accuracy)
 
 #### Results & Progress
 
